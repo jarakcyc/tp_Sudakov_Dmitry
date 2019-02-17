@@ -15,7 +15,6 @@ do
 	do
 		base=$(basename --suffix=".$var"  "$path")
 		new_path="$dir_name"/"$base.$var"
-		#echo "$new_path"
 		counter=0
 		while [ -f "$new_path" ]
 		do
