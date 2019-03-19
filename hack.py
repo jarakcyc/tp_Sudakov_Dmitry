@@ -3,11 +3,10 @@ import math
 
 def get_gistagram(text):
 	cnt = [0] * 26
-	for line in text:
-		for c in list(line):
-			val = ord(c.lower())
-			if (val >= ord('a') and val <= ord('z')):
-				cnt[val - ord('a')] += 1
+	for c in list(text):
+		val = ord(c.lower())
+		if (val >= ord('a') and val <= ord('z')):
+			cnt[val - ord('a')] += 1
 	return cnt
 
 base_gista = []
@@ -30,7 +29,7 @@ def hack(text, model):
 	best = -1
 	shift = 0
 	for key in range(26):
-		cur = get_gistagram([ciphers.encode_caesar(text, key)])
+		cur = get_gistagram(ciphers.encode_caesar(text, key))
 		val = match(cur)
 		if (best == -1 or val < best):
 			best = val

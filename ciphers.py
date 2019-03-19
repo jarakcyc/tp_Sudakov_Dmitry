@@ -20,9 +20,8 @@ def caesar(text, key, flag):
 	else:
 		add = 26 - key
 	res = ""
-	for line in text:
-		for c in list(line): 
-			res += shift_symbol(c, add)
+	for c in list(text): 
+		res += shift_symbol(c, add)
 	return res
 
 def encode_caesar(text, key):
@@ -32,21 +31,38 @@ def decode_caesar(text, key):
 
 def vigenere(text, key, flag):
 	res = ""
-	for line in text:
-		cnt = (len(line) + len(key)) // len(key)
-		codeline = key * cnt
-		symbols = list(line)
-		for i in range(len(symbols)):
-			c = symbols[i]
-			codesymbol = list(codeline)[i]
-			if (flag == True):
-				add = ord(codesymbol.lower()) - ord('a')
-			else:
-				add = 26 - (ord(codesymbol.lower()) - ord('a'))
-			res += shift_symbol(c, add)
+	cnt = (len(text) + len(key)) // len(key)
+	codeline = key * cnt
+	symbols = list(text)
+	for i in range(len(symbols)):
+		c = symbols[i]
+		codesymbol = list(codeline)[i]
+		if (flag == True):
+			add = ord(codesymbol.lower()) - ord('a')
+		else:
+			add = 26 - (ord(codesymbol.lower()) - ord('a'))
+		res += shift_symbol(c, add)
 	return res
 
 def encode_vigenere(text, key):
 	return vigenere(text, key, 1)
 def decode_vigenere(text, key):
 	return vigenere(text, key, 0)
+
+def encode_vernam(text, key):
+	res = ""
+	for c, x in zip(list(text), list(key)):
+		s = c.lower()
+		y = x.lower()
+		nxt = c
+		if (ord(s) >= ord('a') and ord(s) <= ord('z')):
+			val = (ord(s) - ord('a')) ^ (ord(y) - ord('a'))
+			nxt = chr(val + ord('a'))
+			if (s != c):
+				nxt = nxt.upper()
+		res += nxt
+	return res
+
+def decode_vernam(text, key):
+	return encode_vernam(text, key)
+

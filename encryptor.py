@@ -1,7 +1,7 @@
 import sys
 import argparse
-import ciphers
-import hack
+from ciphers import *
+from hack import *
 
 class catcher:
 	pass
@@ -41,11 +41,13 @@ if (catcher.type == 'encode'):
 	if (catcher.Out != None):
 		o = open(catcher.Out, 'w')
 
-	text = f.readlines()
+	text = f.read()
 	if (catcher.cipher == 'caesar'):
-		o.write(ciphers.encode_caesar(text, int(catcher.key)))
+		o.write(encode_caesar(text, int(catcher.key)))
 	elif (catcher.cipher == 'vigenere'):
-		o.write(ciphers.encode_vigenere(text, str(catcher.key)))
+		o.write(encode_vigenere(text, str(catcher.key)))
+	elif (catcher.cipher == 'vernam'):
+		o.write(encode_vernam(text, str(catcher.key)))
 
 	if (catcher.In != None):
 		f.close()
@@ -58,11 +60,13 @@ if (catcher.type == 'decode'):
 	if (catcher.Out != None):
 		o = open(catcher.Out, 'w')
 
-	text = f.readlines()
+	text = f.read()
 	if (catcher.cipher == 'caesar'):
-		o.write(ciphers.decode_caesar(text, int(catcher.key)))
+		o.write(decode_caesar(text, int(catcher.key)))
 	elif (catcher.cipher == 'vigenere'):
-		o.write(ciphers.decode_vigenere(text, str(catcher.key)))
+		o.write(decode_vigenere(text, str(catcher.key)))
+	elif (catcher.cipher == 'vernam'):
+		o.write(decode_vernam(text, str(catcher.key)))
 
 	if (catcher.In != None):
 		f.close()
@@ -75,8 +79,8 @@ if (catcher.type == 'train'):
 	if (catcher.model != None):
 		o = open(catcher.model, 'w')
 
-	text = f.readlines()
-	gista = hack.get_gistagram(text)
+	text = f.read()
+	gista = get_gistagram(text)
 	for i in gista:
 		o.write(str(i) + '\n')
 
@@ -91,8 +95,8 @@ if (catcher.type == 'hack'):
 	if (catcher.Out != None):
 		o = open(catcher.Out, 'w')
 
-	text = f.readlines()
-	o.write(hack.hack(text, catcher.model))
+	text = f.read()
+	o.write(hack(text, catcher.model))
 
 	if (catcher.In != None):
 		f.close()
