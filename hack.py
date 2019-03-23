@@ -1,5 +1,5 @@
 from ciphers import *
-import sys
+
 
 def get_gistagram(text):
     cnt = [0] * alpha
@@ -9,14 +9,15 @@ def get_gistagram(text):
             cnt[val - ord('a')] += 1
     return cnt
 
+
 def get_base_gista(model):
-    f = open(model, 'r')
-    lines = f.readlines()
-    f.close()
+    with open(model, 'r') as f:
+        lines = f.readlines()
     base_gista = []
     for x in lines:
         base_gista.append(int(x))
     return base_gista
+
 
 def match_gista(gista, base_gista):
     res = 0
@@ -24,7 +25,8 @@ def match_gista(gista, base_gista):
         res += abs(base_gista[i] - gista[i]) ** 2
     return res
 
-def hack_caesar(text, model):   
+
+def hack_caesar(text, model):
     base_gista = get_base_gista(model)
     best = -1
     shift = 0
@@ -38,6 +40,7 @@ def hack_caesar(text, model):
 
 # ---------------------------------------------------------------------------
 
+
 def get_symbols_count(text):
     cnt = [0] * alpha
     for c in list(text):
@@ -45,6 +48,7 @@ def get_symbols_count(text):
         if (is_eng(s)):
             cnt[ord(s) - ord('a')] += 1
     return cnt
+
 
 def get_match_index(text):
     cnt = get_symbols_count(text)
@@ -56,18 +60,21 @@ def get_match_index(text):
         res += (cnt[i] / n_symbols) ** 2
     return res
 
+
 def get_base_index(model):
     with open(model, 'r') as f:
         l = f.readlines()
         return float(f[0])
 
-def match_index(index, base_index):
+
+def compare_indexes(index, base_index):
     epsilon = 0.01
     return bool(abs(index - base_index) < epsilon)
 
+
 def hack_vigenere(text, model):
     text = list(text)
-    base_gista = []    
+    base_gista = []
     with open(model, 'r') as f:
         l = f.readlines()
         base_index = float(l[0])
@@ -91,13 +98,14 @@ def hack_vigenere(text, model):
         for i in range(key_size):
             cur_line = get_line(i, key_size, 0)
             index = get_match_index(cur_line)
-            if (match_index(index, base_index)):
+            if (compare_indexes(index, base_index)):
                 good += 1
         if (good / key_size > 0.8):
             break
         key_size += 1
 
-    # находим относительные сдвиги для всех строк 1...key_size-1 относительно 0-ой
+    # находим относительные сдвиги для всех строк 1...key_size-1 относительно
+    # 0-ой
     first_line = get_line(0, key_size, 0)
     shifts = [0]
     for i in range(1, key_size):
@@ -121,7 +129,7 @@ def hack_vigenere(text, model):
                 best_shift = shift
         shifts.append(best_shift)
 
-    # теперь, зная сдвиги всех строк относительно первой, задача превращается 
+    # теперь, зная сдвиги всех строк относительно первой, задача превращается
     # в расшифровку шифра Цезаря
     result_text = ""
     for i in range(len(text)):
