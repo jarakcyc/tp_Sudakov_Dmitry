@@ -1,0 +1,64 @@
+Link to chat: https://t.me/gli100bot_chanel
+Link to bot: @gli100bot
+Link: HEpro100pochta@gmail.com
+
+узнал chat_id вот так:
+https://api.telegram.org/bot758225086:AAGAnCOhDtcrXHAgs5IKKGpHGj7L2Tx3qNg/getUpdates
+
+поставил boost
+https://www.boost.org/doc/libs/1_61_0/more/getting_started/unix-variants.html#get-boost
+sudo apt-get install libboost-all-dev
+поставил openSSL: https://www.howtoforge.com/tutorial/how-to-install-openssl-from-source-on-linux/#on-ubuntu-
+sudo apt-get install openssl 
+sudo apt-get install libssl-dev
+не находило boost_system
+sudo apt-get install libboost-system-dev
+не находило CURL
+sudo apt install curl
+sudo apt install libcurl4-openssl-dev
+
+Ошибка при make:
+make[2]: *** No rule to make target '/home/dimas/dimas/task_3/PatternsCollection/Decorator/cpp-source/configs/config.ini', needed by '/home/dimas/dimas/task_3/bin/configs/config.ini'.  Stop.
+CMakeFiles/Makefile2:752: recipe for target 'Decorator/cpp-source/CMakeFiles/copy_configs.dir/all' failed
+make[1]: *** [Decorator/cpp-source/CMakeFiles/copy_configs.dir/all] Error 2
+Makefile:129: recipe for target 'all' failed
+make: *** [all] Error 2
+Создал файл config.ini
+
+sudo apt-get install libgtk-3-dev
+sudo apt-get install gnutls-bin 
+sudo apt-get install gsasl
+sudo apt-get install libghc-gsasl-dev 
+(https://groups.google.com/forum/#!topic/vmime/K9CIsIVE_GQ)
+sudo apt install doxygen graphviz
+sudo apt-get install libgnutls28-dev 
+sudo apt-get install sendmail
+sudo apt-get install -y git cmake build-essential pkg-config libgsasl7 libgsasl7-dev libgnutls-dev libssl-dev sendmail doxygen
+
+CMake Error at CMakeLists.txt:1004 (MESSAGE):
+Enabling Sendmail protocol requires that you specify path to 'sendmail'
+binary.
+
+git clone https://github.com/kisli/vmime.git
+mkdir vmime/build
+cd vmime/build
+cmake -DVMIME_BUILD_SAMPLES=OFF -DVMIME_SHARED_PTR_USE_BOOST=OFF -DVMIME_SHARED_PTR_USE_CXX=ON -DVMIME_SENDMAIL_PATH=/run/sendmail -DCMAKE_BUILD_TYPE=RELEASE ..
+make
+sudo make install
+
+
+https://github.com/kisli/vmime/issues/153
+добавил FORCE, где сказано в CMakeLists для vmime.
+
+Далее следующая ошибка
+terminate called after throwing an instance of 'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::system::system_error> >'
+  what():  connect: Network is unreachable
+Aborted (core dumped)
+
+утсановил vpn (protovpn)
+https://protonvpn.com/support/linux-vpn-tool/
+
+И заработало!
+В телеграме бот прислал сообщение Hello, TP!
+И такое же сообщение пришло на gmail.
+

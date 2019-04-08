@@ -23,3 +23,5 @@ cmake "~/dimas/task_3/PatternsCollection/Decorator/cpp-source"
 sudo make
 
 cp -r ../PatternsCollection/Decorator/cpp-source/configs .
+
+./Decorator
