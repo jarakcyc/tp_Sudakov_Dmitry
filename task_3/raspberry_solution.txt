@@ -1,0 +1,14 @@
+Скрипт - build_on_pi.sh
+
+Ход решение:
+
+Склонировал PatternCollection
+Склонировал tools от raspberry_pi
+
+Посмотрел CMakeLists.txt в проекте
+
+Установил в скрипте переменную sysroot - путь до sysroot
+и передавал ее при cmake
+
+Также в переменную PATH добавил путь до компиляторов g++ и gcc,
+которые использовались в CMakeLists.txt
