@@ -48,10 +48,12 @@ def vigenere(text, key, flag):
     res = ""
     cnt = (len(text) + len(key)) // len(key)
     codeline = key * cnt
+    codeline = list(codeline)
     symbols = list(text)
-    for i in range(len(symbols)):
+    sz = len(symbols)
+    for i in range(sz):
         c = symbols[i]
-        codesymbol = list(codeline)[i]
+        codesymbol = codeline[i]
         if (flag is True):
             add = ord(codesymbol.lower()) - ord('a')
         else:
