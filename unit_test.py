@@ -53,7 +53,7 @@ def test_hack_caesar_1():
         i.close()
         o.close()
         i = open('input.txt', 'r')
-        assert(hack.hack_caesar(i.read(), './testsrc/model_caesar.txt') == ciphers.encode_caesar(start, 0))
+        assert(hack.hack_caesar(i.read(), './testsrc/model_caesar.txt') == start)
         i.close()
 
 
@@ -66,11 +66,31 @@ def test_hack_caesar_2():
         i.close()
         o.close()
         i = open('input.txt', 'r')
-        assert(hack.hack_caesar(i.read(), './testsrc/model_caesar.txt') == ciphers.encode_caesar(start, 0))
+        assert(hack.hack_caesar(i.read(), './testsrc/model_caesar.txt') == start)
         i.close()
 
 
-#test_hack('text_1.txt', 'model.txt')
-# test_hack('text_2.txt', 'model.txt')
+def test_hack_vigenere_1():
+    for k in range(26):
+        i = open('./testsrc/education.txt', 'r')
+        o = open('input.txt', 'w')
+        start = i.read()
+        o.write(ciphers.encode_vigenere(start, 'lemon'))
+        i.close()
+        o.close()
+        i = open('input.txt', 'r')
+        assert(hack.hack_vigenere(i.read(), './testsrc/model_vigenere.txt') == start)
+        i.close()
 
-#print('ALL TESTS PASSED')
+
+def test_hack_vigenere_2():
+    for k in range(26):
+        i = open('./testsrc/text_2.txt', 'r')
+        o = open('input.txt', 'w')
+        start = i.read()
+        o.write(ciphers.encode_vigenere(start, 'lemon'))
+        i.close()
+        o.close()
+        i = open('input.txt', 'r')
+        assert(hack.hack_vigenere(i.read(), './testsrc/model_vigenere.txt') == start)
+        i.close()
