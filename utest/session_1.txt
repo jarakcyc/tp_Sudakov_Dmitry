@@ -1,0 +1,7 @@
+python3 encryptor.py encode --cipher caesar --key 10 --input-file ./testsrc/text_1.txt +
+python3 encryptor.py encode --cipher caesar --key 10 --input-file ./testsrc/text_1.txt --output-file input.txt +
+python3 encryptor.py decode --cipher caesar --key 10 --input-file input.txt --output-file output.txt +
+python3 encryptor.py encode --cipher vigenere --key helloworld --input-file ./testsrc/text_1.txt --output-file input.txt +
+python3 encryptor.py decode --cipher vigenere --key helloworld --input-file input.txt --output-file output.txt +
+python3 encryptor.py encode --cipher vernam --key helloworld --input-file ./testsrc/text_1.txt --output-file input.txt +
+python3 encryptor.py decode --cipher vernam --key helloworld --input-file input.txt --output-file output.txt +

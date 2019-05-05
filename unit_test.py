@@ -2,6 +2,17 @@ import ciphers
 import hack
 import pytest
 
+def test_is_eng():
+    assert ciphers.is_eng('s')
+    assert ciphers.is_eng('G')
+    assert not ciphers.is_eng('#')
+
+
+def test_shift_symbol():
+    assert ciphers.shift_symbol('a', 1) == 'b'
+    assert ciphers.shift_symbol('A', 2) == 'C'
+
+
 def test_encode_vigenere_1():
     In = 'ATTACKATDAWN'
     assert(ciphers.encode_vigenere(In, 'LEMON') == 'LXFOPVEFRNHR')

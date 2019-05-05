@@ -1,0 +1,7 @@
+python3 encryptor.py encode --cipher caesar --key 10 --input-file ./testsrc/text_2.txt --output-file input.txt +
+python3 encryptor.py hack --cipher caesar --input-file input.txt --output-file output.txt -
+python3 encryptor.py hack --cipher caesar --model-file ./testsrc/model_caesar.txt --input-file input.txt --output-file output.txt +
+python3 encryptor.py encode --cipher vigenere --key helloworld --input-file ./testsrc/education.txt --output-file input.txt +
+python3 encryptor.py hack --cipher vigenere --model-file ./testsrc/model_vigenere.txt --input-file input.txt --output-file output.txt -
+python3 encryptor.py encode --cipher vigenere --key helloworld --input-file ./testsrc/text_2.txt --output-file input.txt +
+python3 encryptor.py hack --cipher vigenere --model-file ./testsrc/model_vigenere.txt --input-file input.txt --output-file output.txt +
